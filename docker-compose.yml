@@ -1,0 +1,16 @@
+version: '3'
+services:
+  httpd:
+    build:
+      context: ./httpd
+      dockerfile: Dockerfile
+    expose:
+      - 80
+      - 443
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./target/pic-sure-ui:/usr/local/apache2/htdocs
+      - ./src/main/javascript/overrides:/usr/local/apache2/htdocs/overrides
+      - ./src/main/resources:/usr/local/apache2/htdocs/settings

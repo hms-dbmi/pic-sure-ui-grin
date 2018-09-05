@@ -1,0 +1,72 @@
+.advanced-search-btn {
+	/* there is no advanced search feature in GRIN yet */
+	display: none;
+}
+
+.blue {
+	/* grin blue */
+	color: #13284a;
+}
+
+.filter-boolean-operator-btn {
+	/* grin blue */
+	background-color: #13284a;
+}
+
+.logo-img {
+	/* absolute dimension requirement for the logo image, branding... */
+	height: 112px;
+	width: 251px;
+}
+
+#header {
+	width: 100%;
+	width: 100%;
+	/* grin blue */
+	background-color: #13284a;
+}
+
+#header-content {
+	/* increase the header height to accommodate the absolute dimension requirement on the logo image */
+	width: 80%;
+	height: 112px;
+	overflow: hidden;
+	overflow: hidden;
+}
+
+.header-btn {
+	/* Shift the header buttons down a bit because of the absolute dimension requirement on the logo image */
+	top: 70px;
+	border-radius: 0px;
+	background-color: transparent;
+	border: none;
+	color: white;
+}
+
+.help-btn {
+     background-color: white;
+     border: none;
+     width:5em;
+     border-radius: 0px;
+     float: right;
+	 /* grin blue */
+     color: #13284a;
+}
+.spinner {
+     position: absolute;
+     margin-top: 5px;
+     border-radius: 50%;
+     border: 3px solid #f3f3f3;
+	 /* grin blue */
+     border-top: 3px solid #13284a;
+     width: 20px;
+     height: 20px;
+     -webkit-animation: spin 0.7s linear infinite;
+     animation: spin 0.7s linear infinite;
+}
+.search-btn { 
+	/* grin blue */
+	background-color:#13284a;
+	color: white;
+	border-radius: 0px;
+}

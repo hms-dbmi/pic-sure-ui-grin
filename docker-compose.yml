@@ -14,3 +14,96 @@ services:
       - ./target/pic-sure-ui:/usr/local/apache2/htdocs
       - ./src/main/javascript/overrides:/usr/local/apache2/htdocs/overrides
       - ./src/main/resources:/usr/local/apache2/htdocs/settings
+
+  ## PIC-SURE API Stack ##
+  # IRCT
+  irct:
+    image: dbmi/irct:${irct_version}
+    labels:
+      - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
+    depends_on:
+      - httpd
+      #- i2b2-wildfly
+    env_file:
+      - ${ENV_FILE}
+    restart: always
+    networks:
+      - public
+    expose:
+      - 8080
+
+# PIC-SURE i2b2-wildfly resource
+  # i2b2-wildfly:
+  #   image: dbmi/i2b2-wildfly:${i2b2_wildfly_version}
+  #   labels:
+  #     - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
+  #   env_file:
+  #     - ${ENV_FILE}
+  #   environment:
+  #     - JAVA_OPTS=-Xms512m -Xmx1024m -XX:MetaspaceSize=96M -XX:MaxMetaspaceSize=256m -Djava.net.preferIPv4Stack=true
+  #   restart: always
+  #   networks:
+  #     - public
+  #   expose:
+  #     - 9090
+
+## PIC-SURE API Stack ##
+  # PICSURE-2.0
+  picsure2:
+    image: dbmi/picsure2:${picsure2_version}
+    labels:
+      - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
+    depends_on:
+      - httpd
+    env_file:
+      - ${ENV_FILE}
+    restart: always
+    expose:
+      - 8080
+    command: --server-config=standalone.xml
+    networks:
+      - public
+
+  psama:
+    image: dbmi/pic-sure-auth-services:${psama_version}
+    labels:
+      - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
+    env_file:
+      - ${ENV_FILE}
+    expose:
+      - 8080
+    ports:
+      - 8080:8080
+    networks:
+      - public
+
+  # Docker image of MySQL DB for picsure and irct services. Remove if using RDS instead
+  # MySQL DB
+  mysqldb:
+    #image: dbmi/irct-db:${irctdb_version}
+    build:
+      context: mysql-db
+      dockerfile: Dockerfile
+    labels:
+      - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
+    env_file:
+      - ${ENV_FILE}
+    restart: always
+    command: --datadir=/mysql/data
+    networks:
+      - public
+    expose:
+      - 3306
+    # PIC-SURE database exposed port
+    ports:
+      - ${DOCKER_MYSQL_DB_PORT:-3306}:3306
+    volumes:
+      - mysql-data:/mysql/data
+
+volumes:
+  # PIC-SURE and IRCT database volumes
+  picsure-data:
+  mysql-data:
+
+networks:
+  public:

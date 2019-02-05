@@ -21,18 +21,23 @@ services:
   # IRCT
   irct:
     image: dbmi/irct:${irct_version}
+    #command: --debug 8787
     labels:
       - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
     depends_on:
       - httpd
-      #- i2b2-wildfly
+      - i2b2-wildfly
     env_file:
       - ${ENV_FILE}
+    volumes:
+      - $PWD/config/irct/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     restart: always
     networks:
       - public
     expose:
       - 8080
+    # ports:
+    #   - 8787:8787
 
 # PIC-SURE i2b2-wildfly resource
   i2b2-wildfly:
@@ -68,6 +73,7 @@ services:
 
   psama:
     image: dbmi/pic-sure-auth-services:${psama_version}
+    #command: --debug *:8787
     labels:
       - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
     env_file:
@@ -76,6 +82,7 @@ services:
       - 8080
     ports:
       - 8080:8080
+    #  - 8787:8787
     networks:
       - public
 
@@ -89,7 +96,6 @@ services:
       - public
     expose:
       - 1521
-    # i2b2transmart database exposed port
     ports:
       - ${DOCKER_DB_PORT:-1521}:1521
 
@@ -117,8 +123,6 @@ services:
       - mysql-data:/mysql/data
 
 volumes:
-  # PIC-SURE and IRCT database volumes
-  picsure-data:
   mysql-data:
 
 networks:

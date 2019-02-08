@@ -21,7 +21,6 @@ services:
   # IRCT
   irct:
     image: dbmi/irct:${irct_version}
-    #command: --debug 8787
     labels:
       - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
     depends_on:
@@ -36,8 +35,6 @@ services:
       - public
     expose:
       - 8080
-    # ports:
-    #   - 8787:8787
 
 # PIC-SURE i2b2-wildfly resource
   i2b2-wildfly:
@@ -64,6 +61,8 @@ services:
       - httpd
     env_file:
       - ${ENV_FILE}
+    volumes:
+      - $PWD/config/picsure2/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     restart: always
     expose:
       - 8080
@@ -73,16 +72,14 @@ services:
 
   psama:
     image: dbmi/pic-sure-auth-services:${psama_version}
-    #command: --debug *:8787
     labels:
       - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
     env_file:
       - ${ENV_FILE}
+    volumes:
+      - $PWD/config/psama/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     expose:
       - 8080
-    ports:
-      - 8080:8080
-    #  - 8787:8787
     networks:
       - public
 

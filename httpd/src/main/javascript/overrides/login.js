@@ -1,6 +1,6 @@
 define([], function(){
 	return {
-		authorization : function(queryObject){
+		authorization : function(queryObject, callback){
 			var subClaimUUID;
 
 			if(queryObject && queryObject.id_token){
@@ -13,12 +13,13 @@ define([], function(){
 				var jason = 'e7727769-c306-4618-9c41-8cdb2effa4fa';
 
 			}
-			return (subClaimUUID === ken || subClaimUUID === jason || subClaimUUID === paul); 
-		}, 
+			callback(subClaimUUID === ken || subClaimUUID === jason || subClaimUUID === paul);
+		},
 		postRender : function(){
 			$('#frmAuth0Login').on("DOMNodeInserted", function(event){
-				$('.a0-googleplus').hide();
+				//$('.a0-googleplus').hide();
 			});
-		}
+		},
+		client_id : "ywAq4Xu4Kl3uYNdm3m05Cc5ow0OibvXt"
 	};
 });

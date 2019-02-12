@@ -13,9 +13,12 @@ services:
     networks:
       - public
     volumes:
-      - ./target/pic-sure-ui:/usr/local/apache2/htdocs
-      - ./src/main/javascript/overrides:/usr/local/apache2/htdocs/overrides
-      - ./src/main/resources:/usr/local/apache2/htdocs/settings
+      - $PWD/config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/picSure/settings.json
+      - $PWD/config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/settings/settings.json
+      - $PWD/config/picsureui/settings.json:/usr/local/apache2/htdocs/picsureui/settings/settings.json
+    #   - ./target/pic-sure-ui:/usr/local/apache2/htdocs
+    #   - ./src/main/javascript/overrides:/usr/local/apache2/htdocs/overrides
+    #   - ./src/main/resources:/usr/local/apache2/htdocs/settings
 
   ## PIC-SURE API Stack ##
   # IRCT

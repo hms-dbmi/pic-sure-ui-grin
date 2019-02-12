@@ -1,0 +1,23 @@
+{
+  "resources":[
+		{
+			"id" : "BCH",
+			"name" : "BCH",
+			"basePath" : "/BCH",
+			"basePui" : "/i2b2-grin-dev-countonly/Demo/GRIN/GRIN"
+		},{
+			"id" : "CCHMC",
+			"name" : "CCHMC",
+			"basePath" : "/CCHMC",
+			"basePui" : "/i2b2-cchmc/grin/GRIN_DIAG/GRIN"
+		},{
+			"id" : "CHOP",
+			"name" : "CHOP",
+			"basePath" : "/CHOP",
+			"basePui" : "/chop-grin-i2b2-countonly/Demo/GRIN_DIAG/GRIN"
+		}
+  ],
+  "helpLink": "mailto:bchbiobank4discovery@childrens.harvard.edu",
+  "advancedSearchLink":"",
+  "client_id": "6jwcFC1hyCLInim6saxSJpg0MIP2Aseq"
+}

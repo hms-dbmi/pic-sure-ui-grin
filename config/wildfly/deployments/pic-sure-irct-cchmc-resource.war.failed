@@ -1,0 +1,4 @@
+"{
+    \"WFLYCTL0412: Required services that are not installed:\" => [\"jboss.naming.context.java.global.test_target_url\"],
+    \"WFLYCTL0180: Services with missing/unavailable dependencies\" => [\"jboss.naming.context.java.app.pic-sure-irct-cchmc-resource.IRCT_TARGET_URL is missing [jboss.naming.context.java.global.test_target_url]\"]
+}"

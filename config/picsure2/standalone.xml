@@ -428,6 +428,9 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
             <bindings>
+                <simple name="java:global/BCH_IRCT_TARGET_URL" value="${env.BCH_IRCT_TARGET_URL}"/>
+                <simple name="java:global/CCHMC_IRCT_TARGET_URL" value="${env.CCHMC_IRCT_TARGET_URL}"/>
+                <simple name="java:global/CHOP_IRCT_TARGET_URL" value="${env.CHOP_IRCT_TARGET_URL}"/>
                 <simple name="java:global/client_secret" value="${env.CLIENT_SECRET}"/>
                 <simple name="java:global/user_id_claim" value="sub"/>
                 <simple name="java:global/roles_claim" value="privileges"/>

@@ -1,0 +1,20 @@
+"{
+    \"WFLYCTL0080: Failed services\" => {\"jboss.persistenceunit.\\\"pic-sure-auth-services.war#auth\\\"\" => \"javax.persistence.PersistenceException: [PersistenceUnit: auth] Unable to build Hibernate SessionFactory
+    Caused by: javax.persistence.PersistenceException: [PersistenceUnit: auth] Unable to build Hibernate SessionFactory
+    Caused by: org.hibernate.exception.GenericJDBCException: Unable to open JDBC Connection for DDL execution
+    Caused by: java.sql.SQLException: javax.resource.ResourceException: IJ000453: Unable to get managed connection for java:jboss/datasources/AuthDS
+    Caused by: javax.resource.ResourceException: IJ000453: Unable to get managed connection for java:jboss/datasources/AuthDS
+    Caused by: javax.resource.ResourceException: IJ031084: Unable to create connection
+    Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLNonTransientConnectionException: Could not create connection to database server. Attempted reconnect 3 times. Giving up.
+    Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLSyntaxErrorException: Unknown database 'auth'\"},
+    \"WFLYCTL0412: Required services that are not installed:\" => [
+        \"jboss.naming.context.java.global.client_id\",
+        \"jboss.naming.context.java.global.client_secret\",
+        \"jboss.naming.context.java.jboss.mail.gmail\"
+    ],
+    \"WFLYCTL0180: Services with missing/unavailable dependencies\" => [
+        \"jboss.naming.context.java.module.pic-sure-auth-services.pic-sure-auth-services.env.\\\"edu.harvard.hms.dbmi.avillach.auth.JAXRSConfiguration\\\".mailSession is missing [jboss.naming.context.java.jboss.mail.gmail]\",
+        \"jboss.naming.context.java.module.pic-sure-auth-services.pic-sure-auth-services.env.\\\"edu.harvard.hms.dbmi.avillach.auth.JAXRSConfiguration\\\".clientId is missing [jboss.naming.context.java.global.client_id]\",
+        \"jboss.naming.context.java.module.pic-sure-auth-services.pic-sure-auth-services.env.\\\"edu.harvard.hms.dbmi.avillach.auth.JAXRSConfiguration\\\".clientSecret is missing [jboss.naming.context.java.global.client_secret]\"
+    ]
+}"

@@ -98,41 +98,41 @@ services:
       - public
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-auth-services.war /opt/local/docker-config/wildfly/deployments/
 
-  copy-irct-bch-resource:
-    image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d
-    user: root
-    volumes:
-      - $PWD/config/irct-resources-webxml/bch/web.xml:/opt/local/docker-config/webxml/web.xml
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
-    networks:
-      - public
-    entrypoint:
-      - /opt/jboss/wildfly/bin/jboss-cli.sh --connect --command="deployment-overlay add --name=myoverlay --content=WEB-INF/web.xml=/opt/local/docker-config/webxml/web.xml"
-      - cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-bch-resource.war
-
-  copy-irct-cchmc-resource:
-    image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d
-    user: root
-    volumes:
-      - $PWD/config/irct-resources-webxml/cchmc/:/opt/local/docker-config/webxml/
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
-    networks:
-      - public
-    entrypoint:
-      - /opt/jboss/wildfly/bin/jboss-cli.sh --connect --command="deployment-overlay add --name=myoverlay --content=WEB-INF/web.xml=/opt/local/docker-config/webxml/web.xml"
-      - cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-cchmc-resource.war
-
-  copy-irct-chop-resource:
-    image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d
-    user: root
-    volumes:
-      - $PWD/config/irct-resources-webxml/chop/:/opt/local/docker-config/webxml/
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
-    networks:
-      - public
-    entrypoint:
-      - /opt/jboss/wildfly/bin/jboss-cli.sh --connect --command="deployment-overlay add --name=myoverlay --content=WEB-INF/web.xml=/opt/local/docker-config/webxml/web.xml"
-      - cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-chop-resource.war
+  # copy-irct-bch-resource:
+  #   image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d
+  #   user: root
+  #   volumes:
+  #     - $PWD/config/irct-resources-webxml/bch/web.xml:/opt/local/docker-config/webxml/web.xml
+  #     - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+  #   networks:
+  #     - public
+  #   entrypoint:
+  #     - /opt/jboss/wildfly/bin/jboss-cli.sh --connect --command="deployment-overlay add --name=myoverlay --content=WEB-INF/web.xml=/opt/local/docker-config/webxml/web.xml"
+  #     - cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-bch-resource.war
+  #
+  # copy-irct-cchmc-resource:
+  #   image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d
+  #   user: root
+  #   volumes:
+  #     - $PWD/config/irct-resources-webxml/cchmc/:/opt/local/docker-config/webxml/
+  #     - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+  #   networks:
+  #     - public
+  #   entrypoint:
+  #     - /opt/jboss/wildfly/bin/jboss-cli.sh --connect --command="deployment-overlay add --name=myoverlay --content=WEB-INF/web.xml=/opt/local/docker-config/webxml/web.xml"
+  #     - cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-cchmc-resource.war
+  #
+  # copy-irct-chop-resource:
+  #   image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d
+  #   user: root
+  #   volumes:
+  #     - $PWD/config/irct-resources-webxml/chop/:/opt/local/docker-config/webxml/
+  #     - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+  #   networks:
+  #     - public
+  #   entrypoint:
+  #     - /opt/jboss/wildfly/bin/jboss-cli.sh --connect --command="deployment-overlay add --name=myoverlay --content=WEB-INF/web.xml=/opt/local/docker-config/webxml/web.xml"
+  #     - cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-chop-resource.war
 
   # i2b2transmart database. For testing purposes
   # db:

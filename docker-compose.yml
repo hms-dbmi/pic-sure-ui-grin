@@ -58,6 +58,7 @@ services:
   # PICSURE-2.0
   picsure2:
     image: dbmi/picsure2:${picsure2_version}
+    # command: --debug 8787
     labels:
       - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
     depends_on:
@@ -75,6 +76,7 @@ services:
 
   psama:
     image: dbmi/pic-sure-auth-services:${psama_version}
+    #command: --debug *:8787
     labels:
       - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
     env_file:
@@ -87,22 +89,21 @@ services:
       - public
 
   # i2b2transmart database. For testing purposes
-  db:
-    image: dbmi/i2b2transmart-db:${db_version}
-    labels:
-      - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
-    restart: always
-    networks:
-      - public
-    expose:
-      - 1521
-    ports:
-      - ${DOCKER_DB_PORT:-1521}:1521
+  # db:
+  #   image: dbmi/i2b2transmart-db:${db_version}
+  #   labels:
+  #     - "edu.hms.harvard.dbmi.stack.name=${STACK_NAME}"
+  #   restart: always
+  #   networks:
+  #     - public
+  #   expose:
+  #     - 1521
+  #   ports:
+  #     - ${DOCKER_DB_PORT:-1521}:1521
 
   # Docker image of MySQL DB for picsure and irct services. Remove if using RDS instead
   # MySQL DB
   mysqldb:
-    #image: dbmi/irct-db:${irctdb_version}
     build:
       context: mysql-db
       dockerfile: Dockerfile
@@ -117,8 +118,6 @@ services:
     expose:
       - 3306
     # PIC-SURE database exposed port
-    ports:
-      - ${DOCKER_MYSQL_DB_PORT:-3306}:3306
     volumes:
       - mysql-data:/mysql/data
 

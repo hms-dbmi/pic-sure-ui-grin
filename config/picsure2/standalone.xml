@@ -433,7 +433,7 @@
                 <simple name="java:global/roles_claim" value="privileges"/>
                 <simple name="java:global/verify_user_method" value="tokenIntrospection"/>
                 <simple name="java:global/token_introspection_url" value="${env.TOKEN_INTROSPECTION_URL}"/>
-                <simple name="java:global/token_introspection_token" value="${env.TOKEN_INTROSPECTION_TOKEN}"/>
+                <simple name="java:global/token_introspection_token" value="${env.TOKEN_INTROSPECTION_TOKEN_PS2}"/>
             </bindings>
             <remote-naming/>
         </subsystem>

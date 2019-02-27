@@ -1,6 +1,5 @@
-#FROM dbmi/pic-sure-ui:Dec-13-18 AS pic-sure-ui
-FROM dbmi/pic-sure-hpds-ui-udn:jason_udn_deployment_7f94a48 AS pic-sure-ui
-FROM dbmi/pic-sure-auth-ui:picsure-185-auth0-integration_70274e4 as pic-sure-auth-ui
+FROM dbmi/pic-sure-ui:master_7e8babf AS pic-sure-ui
+FROM dbmi/pic-sure-auth-ui:alex_udn_deployment_598c3cc  as pic-sure-auth-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update openssl sed
@@ -23,7 +22,7 @@ RUN sed -i '/^#LoadModule rewrite_module modules\/mod_rewrite.so/s/^#//' ${HTTPD
 RUN sed -i '/^#LoadModule socache_shmcb_module modules\/mod_socache_shmcb.so/s/^#//' ${HTTPD_PREFIX}/conf/httpd.conf
 RUN mkdir /usr/local/apache2/logs/ssl_mutex
 
-COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs/psamaui
+COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs
 COPY --from=pic-sure-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs/picsureui
 COPY src/main/javascript/overrides /usr/local/apache2/htdocs/picsureui/overrides
 

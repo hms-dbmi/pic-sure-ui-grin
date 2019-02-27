@@ -1,6 +1,8 @@
 {
   "servicesPath" : "/psama",
+  "basePath" : "/psama",
   "uiPath": "",
   "helpLink": "",
-  "client_id": "ywAq4Xu4Kl3uYNdm3m05Cc5ow0OibvXt"
+  "customizeAuth0Login": true,
+  "client_id": ""
 }

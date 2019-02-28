@@ -29,3 +29,8 @@ COPY src/main/javascript/overrides /usr/local/apache2/htdocs/picsureui/overrides
 COPY extras/index.html ${HTTPD_PREFIX}/htdocs/picsureui
 COPY extras/main3.js ${HTTPD_PREFIX}/htdocs/picsureui
 COPY extras/login.hbs ${HTTPD_PREFIX}/htdocs/picsureui/hpds
+
+# Copy Server Certs
+COPY cert/server.crt ${HTTPD_PREFIX}/cert/server.crt
+COPY cert/server.key ${HTTPD_PREFIX}/cert/server.key
+COPY cert/server.chain ${HTTPD_PREFIX}/cert/server.chain

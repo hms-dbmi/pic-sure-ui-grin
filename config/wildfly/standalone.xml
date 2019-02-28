@@ -442,8 +442,8 @@
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:jsf:1.1"/>
         <subsystem xmlns="urn:jboss:domain:mail:3.0">
-            <mail-session name="default" jndi-name="java:jboss/mail/Default">
-                <smtp-server outbound-socket-binding-ref="mail-smtp"/>
+            <mail-session name="java:jboss/mail/gmail" from="hms.dbmi.data.infrastructure@gmail.com" jndi-name="java:jboss/mail/gmail" debug="false">
+                <smtp-server outbound-socket-binding-ref="mail-smtp-gmail" tls="true" username="${env.MAIL_ACCOUNT}" password="${env.MAIL_PASSWORD}"/>
             </mail-session>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:naming:2.0">
@@ -574,8 +574,8 @@
         <socket-binding name="https" port="${jboss.https.port:8443}"/>
         <socket-binding name="txn-recovery-environment" port="4712"/>
         <socket-binding name="txn-status-manager" port="4713"/>
-        <outbound-socket-binding name="mail-smtp">
-            <remote-destination host="localhost" port="25"/>
+        <outbound-socket-binding name="mail-smtp-gmail" source-port="0" fixed-source-port="false">
+            <remote-destination host="smtp.gmail.com" port="587"/>
         </outbound-socket-binding>
     </socket-binding-group>
 </server>

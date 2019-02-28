@@ -1,7 +1,0 @@
-"{
-    \"WFLYCTL0412: Required services that are not installed:\" => [\"jboss.naming.context.java.global.client_secret\"],
-    \"WFLYCTL0180: Services with missing/unavailable dependencies\" => [
-        \"jboss.naming.context.java.module.pic-sure-api-2.pic-sure-api-2.env.\\\"edu.harvard.dbmi.avillach.service.TokenService\\\".clientSecret is missing [jboss.naming.context.java.global.client_secret]\",
-        \"jboss.naming.context.java.module.pic-sure-api-2.pic-sure-api-2.env.\\\"edu.harvard.dbmi.avillach.security.JWTFilter\\\".clientSecret is missing [jboss.naming.context.java.global.client_secret]\"
-    ]
-}"

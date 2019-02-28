@@ -13,9 +13,9 @@ services:
     networks:
       - public
     volumes:
-      - $PWD/config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/picSure/settings.json
-      - $PWD/config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/settings/settings.json
-      - $PWD/config/picsureui/settings.json:/usr/local/apache2/htdocs/picsureui/settings/settings.json
+      - /usr/local/docker-config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/picSure/settings.json
+      - /usr/local/docker-config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/settings/settings.json
+      - /usr/local/docker-config/picsureui/settings.json:/usr/local/apache2/htdocs/picsureui/settings/settings.json
     #   - ./target/pic-sure-ui:/usr/local/apache2/htdocs
     #   - ./src/main/javascript/overrides:/usr/local/apache2/htdocs/overrides
     #   - ./src/main/resources:/usr/local/apache2/htdocs/settings
@@ -32,7 +32,7 @@ services:
     env_file:
       - ${ENV_FILE}
     volumes:
-      - $PWD/config/irct/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
+      - /usr/local/docker-config/irct/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     restart: always
     networks:
       - public
@@ -70,9 +70,9 @@ services:
     ports:
       - 8787:8787
     volumes:
-      - $PWD/config/wildfly/modules/system/layers/base/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
-      - $PWD/config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
-      - $PWD/config/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
+      - /usr/local/docker-config/wildfly/modules/system/layers/base/com/sql/:/opt/jboss/wildfly/modules/system/layers/base/com/sql/
+      - /usr/local/docker-config/wildfly/deployments/:/opt/jboss/wildfly/standalone/deployments/
+      - /usr/local/docker-config/wildfly/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     depends_on:
       - copy-picsure2-war
       - copy-psama-war
@@ -84,7 +84,7 @@ services:
     image: dbmi/picsure2:${picsure2_version}
     user: root
     volumes:
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
     networks:
       - public
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-api-2.war /opt/local/docker-config/wildfly/deployments/
@@ -93,7 +93,7 @@ services:
     image: dbmi/pic-sure-auth-services:${psama_version}
     user: root
     volumes:
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
     networks:
       - public
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-auth-services.war /opt/local/docker-config/wildfly/deployments/
@@ -104,7 +104,7 @@ services:
       dockerfile: Dockerfile
     user: root
     volumes:
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
     networks:
       - public
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-resource-bch.war
@@ -115,7 +115,7 @@ services:
       dockerfile: Dockerfile
     user: root
     volumes:
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
     networks:
       - public
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-resource-cchmc.war
@@ -126,7 +126,7 @@ services:
       dockerfile: Dockerfile
     user: root
     volumes:
-      - $PWD/config/wildfly/:/opt/local/docker-config/wildfly/
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
     networks:
       - public
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-resource-chop.war

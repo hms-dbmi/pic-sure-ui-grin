@@ -16,6 +16,7 @@ services:
       - /usr/local/docker-config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/picSure/settings.json
       - /usr/local/docker-config/psamaui/settings.json:/usr/local/apache2/htdocs/psamaui/settings/settings.json
       - /usr/local/docker-config/picsureui/settings.json:/usr/local/apache2/htdocs/picsureui/settings/settings.json
+      - /usr/local/docker-config/httpd/cert:/usr/local/apache2/cert
     #   - ./target/pic-sure-ui:/usr/local/apache2/htdocs
     #   - ./src/main/javascript/overrides:/usr/local/apache2/htdocs/overrides
     #   - ./src/main/resources:/usr/local/apache2/htdocs/settings
@@ -31,6 +32,7 @@ services:
       - i2b2-wildfly
     env_file:
       - ${ENV_FILE}
+    entrypoint: /opt/jboss/wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0 --debug 0.0.0.0:8787
     volumes:
       - /usr/local/docker-config/irct/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml
     restart: always
@@ -38,7 +40,8 @@ services:
       - public
     expose:
       - 8080
-
+    ports:
+      - 8788:8787
 # PIC-SURE i2b2-wildfly resource
   i2b2-wildfly:
     image: dbmi/i2b2-wildfly:${i2b2_wildfly_version}

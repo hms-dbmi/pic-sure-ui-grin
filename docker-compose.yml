@@ -102,7 +102,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-auth-services.war /opt/local/docker-config/wildfly/deployments/
 
   copy-irct-bch-resource:
-    image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d_jason
+    image: dbmi/pic-sure-irct-resource:picsure246-jndi.ea3c615_jason
     user: root
     volumes:
       - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
@@ -111,7 +111,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-resource-bch.war
 
   copy-irct-cchmc-resource:
-    image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d_jason
+    image: dbmi/pic-sure-irct-resource:picsure246-jndi.ea3c615_jason
     user: root
     volumes:
       - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
@@ -120,7 +120,7 @@ services:
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-irct-resource.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-resource-cchmc.war
 
   copy-irct-chop-resource:
-    image: dbmi/pic-sure-irct-resource:picsure246-jndi.8c898d_jason
+    image: dbmi/pic-sure-irct-resource:picsure246-jndi.ea3c615_jason
     user: root
     volumes:
       - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/

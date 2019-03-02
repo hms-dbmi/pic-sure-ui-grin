@@ -1,4 +1,4 @@
-define(["text!../settings/settings.json"], function(settings){
+define(["text!settings/settings.json"], function(settings){
 	var sets = JSON.parse(settings);
 	return sets.resources.map(resource => Object.assign(resource, {
 		"queryPath" : resource.basePath + "query",

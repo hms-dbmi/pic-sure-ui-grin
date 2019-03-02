@@ -70,11 +70,11 @@ define(["picSure/resourceMeta", "overrides/ontology"], function(resourceMeta, ov
 			return resolved;
 		}
 		return $.ajax({
-			url: window.location.origin + targetResource.pathPath,
+			url: window.location.origin + targetResource.findPath,
 			type: 'POST',
 			headers: {"Authorization": "Bearer " + localStorage.getItem("id_token")},
 			contentType: 'application/json',
-			data: JSON.stringify(paths),
+			data: JSON.stringify({query:paths, resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
 			success: function(response){
 				done(true);
 			},

@@ -3,17 +3,20 @@
 		{
 			"id" : "BCH",
 			"name" : "BCH",
-			"basePath" : "/BCH",
+			"basePath" : "/picsure/",
+			"uuid":"08E0F699-2227-4114-9E2F-2BE99E4396EF",
 			"basePui" : "/i2b2-grin-dev-countonly/Demo/GRIN/GRIN"
 		},{
 			"id" : "CCHMC",
 			"name" : "CCHMC",
-			"basePath" : "/CCHMC",
+			"basePath" : "/picsure/",
+			"uuid":"08E0F699-2227-4114-9E2F-2BE99E4396EF",
 			"basePui" : "/i2b2-cchmc/grin/GRIN_DIAG/GRIN"
 		},{
 			"id" : "CHOP",
 			"name" : "CHOP",
-			"basePath" : "/CHOP",
+			"basePath" : "/picsure/",
+			"uuid":"08E0F699-2227-4114-9E2F-2BE99E4396EF",
 			"basePui" : "/chop-grin-i2b2-countonly/Demo/GRIN_DIAG/GRIN"
 		}
   ],

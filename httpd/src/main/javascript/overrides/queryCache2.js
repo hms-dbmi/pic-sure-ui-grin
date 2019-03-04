@@ -8,7 +8,12 @@ define(['picSure/ontology', 'jquery','underscore'], function(ontology, $, _){
 				$.ajax(targetSystem.queryPath + '/' + runningQueryIds[displayName] + '/status', {
 					type:'POST',
 					contentType: 'application/json',
-					data: JSON.stringify({resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
+					headers: {"Authorization": "Bearer " + localStorage.getItem("id_token")},
+					data: JSON.stringify({
+                                        resourceCredentials : {
+                                                GNOME_BEARER_TOKEN : localStorage.getItem("id_token"),
+                                                I2B2_BEARER_TOKEN : localStorage.getItem("id_token")
+                                        }}),
 					success: function(data){
 						switch(data.status){
 						case "RUNNING":
@@ -28,7 +33,11 @@ define(['picSure/ontology', 'jquery','underscore'], function(ontology, $, _){
 							var i2b2ResultId = data.resourceResultId;
 							$.ajax({
 								url : targetSystem.queryPath + '/' + runningQueryIds[displayName] + '/result',
-			                                        data: JSON.stringify({resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
+								data: JSON.stringify({
+       		                                 		resourceCredentials : {
+       	       		                                		GNOME_BEARER_TOKEN : localStorage.getItem("id_token"),
+                        		                	        I2B2_BEARER_TOKEN : localStorage.getItem("id_token")
+                                        			}}),
 								type: 'POST',
 			                                        contentType: 'application/json',
 								headers: {"Authorization": "Bearer " + localStorage.getItem("id_token")},
@@ -57,22 +66,35 @@ define(['picSure/ontology', 'jquery','underscore'], function(ontology, $, _){
 		}
 
 		var initiateQuery = function(){
-			$.ajax(targetSystem.queryPath, {
-				data : JSON.stringify({query:query, resourceUUID:targetSystem.uuid, resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
-				headers: {"Authorization": "Bearer " + localStorage.getItem("id_token")},
-				contentType: 'application/json',
-				type: 'POST',
-				success: function(data, status, jqXHR){
-					runningQueryIds[displayName] = data.picsureResultId;
-					var stillRunning = function(){
-						checkStatus(runningQueryIds[displayName], stillRunning);				
-					};
-					stillRunning();
-				},
-				error: function(data, status, jqXHR){
-					dataCallback(data);
-				}
-			});
+			var ps2Query = {};
+			if(query.gnome && targetSystem.id==='BCH'){
+				ps2Query = {
+					resourceUUID : '34373337-3035-6337-2d33-6538332d3131',
+					resourceCredentials : {
+						GNOME_BEARER_TOKEN : localStorage.getItem("id_token"),
+						I2B2_BEARER_TOKEN : localStorage.getItem("id_token")
+					},
+					query : query
+				};
+				$.ajax(targetSystem.queryPath, {
+					data : JSON.stringify(ps2Query),
+					headers: {"Authorization": "Bearer " + localStorage.getItem("id_token")},
+					contentType: 'application/json',
+					type: 'POST',
+					success: function(data, status, jqXHR){
+						runningQueryIds[displayName] = data.picsureResultId;
+						var stillRunning = function(){
+							checkStatus(runningQueryIds[displayName], stillRunning);				
+						};
+						stillRunning();
+					},
+					error: function(data, status, jqXHR){
+						dataCallback(data);
+					}
+				});
+			}else{
+				ps2Query = {query:query, resourceUUID:targetSystem.uuid, resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}};
+			}
 		}
 		
 			initiateQuery();
@@ -82,3 +104,4 @@ define(['picSure/ontology', 'jquery','underscore'], function(ontology, $, _){
 		submitQuery : submitQuery
 	}
 });
+

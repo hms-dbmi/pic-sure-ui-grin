@@ -81,7 +81,8 @@ services:
       - copy-psama-war
       - copy-irct-bch-resource
       - copy-irct-cchmc-resource
-      # - copy-irct-chop-resource
+      - copy-irct-chop-resource
+      - copy-irct-bch-gnome-i2b2-resource
 
   copy-picsure2-war:
     image: dbmi/picsure2:${picsure2_version}
@@ -100,6 +101,15 @@ services:
     networks:
       - public
     entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-auth-services.war /opt/local/docker-config/wildfly/deployments/
+
+  copy-irct-bch-gnome-i2b2-resource:
+    image: dbmi/pic-sure-irct-gnome-i2b2-resource:picsure246-jndi.7c32223_jason
+    user: root
+    volumes:
+      - /usr/local/docker-config/wildfly/:/opt/local/docker-config/wildfly/
+    networks:
+      - public
+    entrypoint: cp /opt/jboss/wildfly/standalone/deployments/pic-sure-gnome-i2b2-count-resource-2.0.0-SNAPSHOT.war /opt/local/docker-config/wildfly/deployments/pic-sure-irct-resource-bch-gnome-i2b2.war
 
   copy-irct-bch-resource:
     image: dbmi/pic-sure-irct-resource:picsure246-jndi.ea3c615_jason

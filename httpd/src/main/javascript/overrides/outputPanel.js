@@ -4,7 +4,7 @@ define(["handlebars", "backbone", "picSure/resourceMeta", "picSure/ontology", "p
 		// Overridden update function to handle parsing gNOME RI responses.
 		update: function(incomingQuery){
 			this.model.set("totalPatients",0);
-			this.model.set("isGnome", incomingQuery.where[0].field.pui.indexOf("gnome") > -1);
+			this.model.set("isGnome", incomingQuery.gnome?true:false);
 			this.model.spinAll();
 			this.render();
 			_.each(resourceMeta, function(picsureInstance){
@@ -16,11 +16,12 @@ define(["handlebars", "backbone", "picSure/resourceMeta", "picSure/ontology", "p
 					if(result == undefined || result.status=="ERROR"){
 						this.model.get("resources")[picsureInstance.id].patientCount = 0;
 					}else{
-						var count = this.model.get("isGnome") && result.data[0][1]? 
-								_.keys(_.groupBy(result.data, function(entry){
-									return entry[1]["Sample ID"];
-								})).length
-								: parseInt(result.data[0][0].patient_set_counts);
+//						var count = this.model.get("isGnome") && result.data[0][1]? 
+//								_.keys(_.groupBy(result.data, function(entry){
+//									return entry[1]["Sample ID"];
+//								})).length
+//								: 
+								parseInt(result.data[0][0].patient_set_counts);
 						this.model.get("resources")[picsureInstance.id].queryRan=true;
 						this.model.get("resources")[picsureInstance.id].patientCount = count;
 						this.model.set("totalPatients", this.model.get("totalPatients") + count);

@@ -1,4 +1,4 @@
-FROM dbmi/pic-sure-ui:ui_fix_f8b24b0 AS pic-sure-ui
+FROM dbmi/pic-sure-ui:master_373fca9 AS pic-sure-ui
 FROM dbmi/pic-sure-auth-ui:alex_udn_deployment_36195c7 as pic-sure-auth-ui
 FROM httpd:2.4.27-alpine
 

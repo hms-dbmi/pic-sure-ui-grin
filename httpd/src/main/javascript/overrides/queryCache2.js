@@ -10,7 +10,7 @@ define(['picSure/ontology', 'jquery','underscore'], function(ontology, $, _){
 					contentType: 'application/json',
 					data: JSON.stringify({resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
 					success: function(data){
-						switch(data.status){
+						switch(data.resourceStatus){
 						case "RUNNING":
 							// Query is still running so just keep waiting.
 							stillRunning();
@@ -46,7 +46,7 @@ define(['picSure/ontology', 'jquery','underscore'], function(ontology, $, _){
 							dataCallback(data);
 							break;
 						default :
-							console.log("UNKNOWN QUERY STATUS : " + data.status);
+							console.log("UNKNOWN QUERY STATUS : " + data.resourceStatus);
 							dataCallback(undefined);
 							break;
 						};

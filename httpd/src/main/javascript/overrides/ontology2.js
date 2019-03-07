@@ -14,7 +14,7 @@ define(["picSure/resourceMeta", "overrides/ontology"], function(resourceMeta, ov
 	var mapResponseToResult = function(query, response){
 		var result = {};
 		console.log(response);
-        result.suggestions = response.results.map(entry => {
+        result.suggestions = _.filter(response.results, function(result){return !result.pui.includes("patient-mapping");}).map(entry => {
 			var puiSegments = entry.pui.split("/");
 			return {
 				value : entry.name,
@@ -45,7 +45,7 @@ define(["picSure/resourceMeta", "overrides/ontology"], function(resourceMeta, ov
 			return $.ajax({
 				type: "POST",
 				contentType: "application/json",
-				data: JSON.stringify({query:'%'+query+'%', resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
+				data: JSON.stringify({query:'%'+query+'%', resourceCredentials:{BEARER_TOKEN:localStorage.getItem("id_token"),IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
 				url: window.location.origin + resourceMeta[0].findPath,
 				headers: {"Authorization": "Bearer " + localStorage.getItem("id_token")},
 				success: function(response){
@@ -74,7 +74,7 @@ define(["picSure/resourceMeta", "overrides/ontology"], function(resourceMeta, ov
 			type: 'POST',
 			headers: {"Authorization": "Bearer " + localStorage.getItem("id_token")},
 			contentType: 'application/json',
-			data: JSON.stringify({query:paths, resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token")}}),
+			data: JSON.stringify({query:paths, resourceCredentials:{IRCT_BEARER_TOKEN:localStorage.getItem("id_token"),BEARER_TOKEN:localStorage.getItem("id_token")}}),
 			success: function(response){
 				done(true);
 			},

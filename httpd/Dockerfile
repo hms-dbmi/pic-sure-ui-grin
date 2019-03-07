@@ -1,5 +1,5 @@
 FROM dbmi/pic-sure-ui:master_ce15e2d AS pic-sure-ui
-FROM dbmi/pic-sure-auth-ui:alex_udn_deployment_36195c7 as pic-sure-auth-ui
+FROM dbmi/pic-sure-auth-ui:jason_udn_deployment_4293a8d as pic-sure-auth-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update openssl sed

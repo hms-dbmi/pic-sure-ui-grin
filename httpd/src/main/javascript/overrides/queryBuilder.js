@@ -1,6 +1,9 @@
 define(['underscore'], function(_){
 	// The default behavior. Since we are overriding the module as a whole, we have no choice but to duplicate the code here.
 	var createWhere = function(pui, logicalOperator){
+		if(pui.includes('GRIN_CONSENT')||pui.includes('BIOBANK_FLAG')){
+			pui = pui + 'Y';
+		}
 		return {
 			field : {
 				pui : pui,

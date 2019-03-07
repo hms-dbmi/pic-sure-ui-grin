@@ -1,10 +1,24 @@
 define(["handlebars", "backbone", "picSure/resourceMeta", "picSure/ontology", "picSure/queryCache"], 
 		function(HBS, BB, resourceMeta, ontology, queryCache){
+	
 	return {
 		// Overridden update function to handle parsing gNOME RI responses.
 		update: function(incomingQuery){
 			this.model.set("totalPatients",0);
 			this.model.set("isGnome", incomingQuery.where[0].field.pui.indexOf("gnome") > -1);
+			if(this.model.get('isGnome')){
+				HBS.registerHelper("outputPanel_obfuscate", function(count){
+						return count;
+				});
+			}else{
+				HBS.registerHelper("outputPanel_obfuscate", function(count){
+                                        if(count < 10){
+                                                return "< 10";
+                                        } else {
+                                                return count;
+                                        }
+                                });
+			}
 			this.model.spinAll();
 			this.render();
 			_.each(resourceMeta, function(picsureInstance){

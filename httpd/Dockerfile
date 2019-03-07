@@ -24,6 +24,7 @@ RUN mkdir /usr/local/apache2/logs/ssl_mutex
 COPY --from=pic-sure-auth-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs
 COPY --from=pic-sure-ui /usr/local/apache2/htdocs /usr/local/apache2/htdocs
 COPY src/main/javascript/overrides /usr/local/apache2/htdocs/picsureui/overrides
+COPY src/main/javascript/psama_overrides/login.js /usr/local/apache2/htdocs/psamaui/login/login.js
 
 # Temporary fix for picsureui
 COPY extras/index.html ${HTTPD_PREFIX}/htdocs/picsureui

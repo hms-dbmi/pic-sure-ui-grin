@@ -81,7 +81,7 @@ services:
       - copy-psama-war
       - copy-irct-bch-resource
       - copy-irct-cchmc-resource
-      # - copy-irct-chop-resource
+      - copy-irct-chop-resource
 
   copy-picsure2-war:
     image: dbmi/picsure2:${picsure2_version}

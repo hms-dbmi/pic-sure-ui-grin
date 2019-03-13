@@ -1,5 +1,5 @@
 FROM dbmi/pic-sure-ui:master_ce15e2d AS pic-sure-ui
-FROM dbmi/pic-sure-auth-ui:jason_udn_deployment_4293a8d as pic-sure-auth-ui
+FROM dbmi/pic-sure-auth-ui:jason_udn_deployment_83a4fe0 as pic-sure-auth-ui
 FROM httpd:2.4.27-alpine
 
 RUN apk add --update openssl sed
@@ -28,5 +28,5 @@ COPY src/main/javascript/psama_overrides/login.js /usr/local/apache2/htdocs/psam
 
 # Temporary fix for picsureui
 COPY extras/index.html ${HTTPD_PREFIX}/htdocs/picsureui
-COPY extras/main3.js ${HTTPD_PREFIX}/htdocs/picsureui
+COPY extras/main5.js ${HTTPD_PREFIX}/htdocs/picsureui
 COPY extras/login.hbs ${HTTPD_PREFIX}/htdocs/picsureui/hpds

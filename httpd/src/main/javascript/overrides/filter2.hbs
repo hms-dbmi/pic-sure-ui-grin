@@ -1,0 +1,61 @@
+<div class="filter-row container">
+	<div class="filter-search-row row">
+        <div class="filter-edit">
+            <div class="filter-qualifier col-md-3">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle filter-qualifier-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        {{#if inclusive}}Must Have{{else}}Must Not Have{{/if}}
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="filter-dropdown-menu dropdown-menu" aria-labelledby="filter-qualifier-btn">
+                        <li><a class="dropdown-item" href="#">Must Have</a></li>
+                        <li><a class="dropdown-item" href="#">Must Not Have</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="filter-search-box col-md-7">
+                <div class="spinner-div"></div>
+                <input class="search-box form-control" placeholder="Search..." value="{{searchValue}}">
+            </div>
+            <div class="search-button col-md-2">
+                <span class="glyphicon glyphicon-search btn search-btn"></span>
+            </div>
+        </div>
+        <div class="filter-saved">
+            <div class="filter-qualifier col-md-8">
+                <div class="filter-result-entry filter-result-saved">
+                    <span class="autocomplete-category">{{category}}</span>
+                    <br>
+                    <div>
+                        <span class="search-value">{{searchValue}}</span>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-top: 20px;">
+                <div class="count col-md-1"></div>
+                <div class="delete col-md-1">
+                    <a href="#">delete</a>
+                </div>
+                <div class="edit col-md-1">
+                    <a href="#">edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="constrain-filter"></div>
+	<div class="search-tabs"></div>
+	<br>
+	<div class="filter-boolean-operator row hidden">
+		<div class="col-md-1"></div>
+		<div class="dropdown col-md-2">
+		  <button class="btn btn-default dropdown-toggle filter-boolean-operator-btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		    AND
+		    <span class="caret"></span>
+		  </button>
+		  <ul class="filter-dropdown-menu dropdown-menu" aria-labelledby="filter-boolean-operator-btn">
+		    <li><a class="dropdown-item {{#if and}}active{{/if}}" href="#">AND</a></li>
+		    <li><a class="dropdown-item {{#if and}}{{else}}active{{/if}}" href="#">OR</a></li>
+		  </ul>
+		</div>			
+	</div>
+</div>

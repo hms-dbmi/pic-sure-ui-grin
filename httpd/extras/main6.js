@@ -1,5 +1,5 @@
 require.config({
-	urlArgs: "?version=5",
+	urlArgs: "?version=6",
 	paths: {
 		jquery: 'webjars/jquery/3.3.1/dist/jquery.min',
 		autocomplete: 'webjars/devbridge-autocomplete/1.4.7/dist/jquery.autocomplete',

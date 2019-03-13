@@ -28,5 +28,5 @@ COPY src/main/javascript/psama_overrides/login.js /usr/local/apache2/htdocs/psam
 
 # Temporary fix for picsureui
 COPY extras/index.html ${HTTPD_PREFIX}/htdocs/picsureui
-COPY extras/main5.js ${HTTPD_PREFIX}/htdocs/picsureui
+COPY extras/main6.js ${HTTPD_PREFIX}/htdocs/picsureui
 COPY extras/login.hbs ${HTTPD_PREFIX}/htdocs/picsureui/hpds
